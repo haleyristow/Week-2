@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React!!</title>
+  <style>
+    body{
+      background-color: floralwhite;
+      text-align: center;
+    }
+    .select {
+			display:inline-block;
+      padding: 20px;
+      font-family: sans-serif;
+		}
+    .hi {
+      background-color:#cad7e3;
+      padding: 10px;
+      font-family: sans-serif;
+    }
+    h1{
+       color: #ccac93;
+       margin-top: 50px;
+       font-family: sans-serif;
+    }
+    a{
+      color: #FF8D85;
+    }
+	</style>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin>
+  </script> 
+  <script src="https://unpkg.com/@babel/standalone@7.22.10/babel.min.js"></script>
+</head>
+<body>
+  <h1> Welcome </h1>
+  <p class="hi">
+    Hi there! If you'd like, select a hobby from those below to find out more information and resources!
+  </p>
+  <div id="hello?"></div>
+  <script type="text/babel">
+    "use strict";
+    function ProjectList(props) {
+      console.log(props);
+      return (
+        <div>
+    
+            {
+              props.list.map(
+                (item,index) => (
+                  <p class="select" key={index}>
+                    <a href={item.link}>
+                      {item.hobby}
+                    </a>
+                  </p>
+                )
+              )
+            }
+          
+        </div>
+      );
+    }
+    
+    $.getJSON(
+      "x", 
+      function(jsonFromJquery) {
+        const myRoot = ReactDOM.createRoot( document.getElementById("hello?")
+        );                                   
+        myRoot.render(
+          <ProjectList list={jsonFromJquery} />
+        );
+      }
+    );
+  </script>
+</body>
+</html>
